@@ -1,16 +1,16 @@
 var pointsArray = document.getElementsByClassName('point');
  
-var animatePoints = function(points) {           
+//var animatePoints = function(points) {           
      
     /*Refactor the individual style calls of the landing.js script to be a single function named revealPoint that:
     takes a single argument: the index of the points class node element, and
     gets called in a for loop.*/
     
-    var revealPoint = function(indx) {
-         points[indx].style.opacity = 1;
-         points[indx].style.transform = "scaleX(1) translateY(0)";
-         points[indx].style.msTransform = "scaleX(1) translateY(0)";
-         points[indx].style.WebkitTransform = "scaleX(1) translateY(0)"; 
+    var revealPoint = function(point) {
+         point.style.opacity = 1;
+         point.style.transform = "scaleX(1) translateY(0)";
+         point.style.msTransform = "scaleX(1) translateY(0)";
+         point.style.WebkitTransform = "scaleX(1) translateY(0)"; 
     };
     
     var animatePoints = function(points) {
@@ -20,7 +20,7 @@ var animatePoints = function(points) {
     //for (var i=0; i < points.length; i++) {
     //    revealPoint(i);
     //};
-};
+//};
 
  window.onload = function() {
      // Automatically animate the points on a tall screen where scrolling can't trigger the animation
