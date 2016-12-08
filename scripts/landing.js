@@ -7,15 +7,19 @@ var animatePoints = function(points) {
     gets called in a for loop.*/
     
     var revealPoint = function(indx) {
-             points[indx].style.opacity = 1;
-             points[indx].style.transform = "scaleX(1) translateY(0)";
-             points[indx].style.msTransform = "scaleX(1) translateY(0)";
-             points[indx].style.WebkitTransform = "scaleX(1) translateY(0)"; 
+         points[indx].style.opacity = 1;
+         points[indx].style.transform = "scaleX(1) translateY(0)";
+         points[indx].style.msTransform = "scaleX(1) translateY(0)";
+         points[indx].style.WebkitTransform = "scaleX(1) translateY(0)"; 
     };
     
-    for (var i=0; i < points.length; i++) {
-        revealPoint(i);
+    var animatePoints = function(points) {
+        forEach(points, revealPoint);
     };
+    
+    //for (var i=0; i < points.length; i++) {
+    //    revealPoint(i);
+    //};
 };
 
  window.onload = function() {
