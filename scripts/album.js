@@ -29,6 +29,22 @@ var albumPicasso = {
      ]
  };
 
+//My Example Album
+ var albumSylvia = {
+     title: 'Where am I',
+     artist: 'Sylvia Sievers',
+     label: 'SJS',
+     year: '1970',
+     albumArtUrl: 'assets/images/album_covers/DOBBY.JPG',
+     songs: [
+         { title: 'Little Puppy', duration: '3:01' },
+         { title: 'Cat got your tongue?', duration: '2:01' },
+         { title: 'Crazytown!', duration: '3:01'},
+         { title: 'Too many pets', duration: '2:14' },
+         { title: 'Dogs and Cats Living Together', duration: '2:33'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -41,7 +57,6 @@ var createSongRow = function(songNumber, songName, songLength) {
      return template;
  };
 
-var setCurrentAlbum = function(album) {
      // select all HTML elements to display
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
@@ -49,6 +64,8 @@ var setCurrentAlbum = function(album) {
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
  
+var setCurrentAlbum = function(album) {
+
      // the firstChild property identifies the first child node of an element, and  nodeValue returns or sets the value of a node.
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
@@ -65,5 +82,15 @@ var setCurrentAlbum = function(album) {
  };
  
  window.onload = function() {
-     setCurrentAlbum(albumPicasso);
+     setCurrentAlbum(albumSylvia);
+     
+     var albums = [albumPicasso, albumMarconi, albumSylvia];
+     var index = 0;
+     albumImage.addEventListener('click', function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if (index == albums.length) {
+             index=0;
+         }
+     });
  };
