@@ -136,6 +136,15 @@ var currentlyPlayingSong = null;
      });
      
      for (var i = 0; i <songRows.length; i++) {
+         songRows[i].addEventListener('mouseenter', function(event) {
+             //  we've cached the song item that we're leaving in a variable
+            var songItem = getSongItem(event.target);
+            var songItemNumber = songItem.getAttribute('data-song-number');
+            //we've added the conditional that checks that the item the mouse is leaving is not the current song, and we only change the content if it isn't.
+            if (songItemNumber !== currentlyPlayingSong) {
+                songItem.innerHTML = playButtonTemplate;
+            }
+         });
          songRows[i].addEventListener('mouseleave', function(event) {
              //  we've cached the song item that we're leaving in a variable
             var songItem = getSongItem(event.target);
