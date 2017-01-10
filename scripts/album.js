@@ -32,21 +32,21 @@ var createSongRow = function(songNumber, songName, songLength) {
      };
     
      var onHover = function(event) {
-        var songNumberItem = parseInt($(this).find('.song-item-number'));
-        var songNumber = songNumberItem.attr('data-song-number');
+        var songNumberItem = $(this).find('.song-item-number');
+        var songNumber = parseInt($(songNumberItem).attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberItem.html(playButtonTemplate);
         }
      };
      var offHover = function(event) { 
-        var songNumberItem = parseInt($(this).find('.song-item-number'));
-        var songNumber = songNumberItem.attr('data-song-number');
+        var songNumberItem = $(this).find('.song-item-number');
+        var songNumber = parseInt($(songNumberItem).attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberItem.html(songNumber);
         }
-         console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
+         //console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
      };
     
      $row.find('.song-item-number').click(clickHandler);
@@ -75,8 +75,8 @@ var setCurrentAlbum = function(album) {
      }
  };
 
-var TrackIndex = function(album, song) {
-    return album.songs.inde0f(song);
+var trackIndex = function(album, song) {
+    return album.songs.indexOf(song);
 };
 
 var nextSong = function() {
@@ -141,7 +141,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    $('.main-controls .play-pause').html(playerBarPauseButtin);
+    $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
 //Album button templates
