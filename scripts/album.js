@@ -46,28 +46,16 @@ var setTotalTimeInPlayerBar = function(totalTime) {
 };
 
 //PLAYING/PAUSING SONGS FROM PLAYER BAR
-/*var togglePlayFromPlayerBar = function(){
-    if ($playFromPlayerBar.click){
-        var $songNumberCell =getSongNumberCell(currentlyPlayingSongNumber);
 
-        if (currentSoundFile.isPaused()){
-            $songNumberCell.html(pauseButtonTemplate);
-            $playFromPlayerBar.html(playerBarPauseButton);
-        } else {
-            $songNumberCell.html(playButtonTemplate);
-            $playFromPlayerBar.html(playerBarPlayButton);
-        }
-        currentSoundFile.togglePlay();
-    }
-};
-*/
 var togglePlayFromPlayerBar = function() {
+    var $songNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
     if (currentSoundFile.isPaused()) {
-        $(this).html(pauseButtonTemplate);
+        $songNumberCell.html(pauseButtonTemplate);
         $playPauseButton.html(playerBarPauseButton);
         currentSoundFile.play();
+        //update td of current song to show correct html/button
     } else {
-        $(this).html(playButtonTemplate);
+        $songNumberCell.html($songNumberCell.attr('data-song-number'));
         $playPauseButton.html(playerBarPlayButton);
         currentSoundFile.pause();
     }
@@ -213,11 +201,14 @@ var setupSeekBars = function() {
             var offsetX = event.pageX - $seekBar.offset().left;
             var barWidth = $seekBar.width();
             var seekBarFillRatio = offsetX / barWidth;
-                       
-        if ($(this).parent().attr('class') == 'seek-control') {
+            
+        console.log('$seekBar.parent().attr(class) - ' + $seekBar.parent().attr('class'));   
+            
+        if ($seekBar.parent().attr('class') == 'seek-control') {
             seek(seekBarFillRatio * currentSoundFile.getDuration());
         } else {
-            setVolume(seekBarFillRatio);
+            //console.log('mousemove on thumb ' + JSON.stringify(this));
+            setVolume(seekBarFillRatio * 100);
         }
             
         updateSeekPercentage($seekBar, seekBarFillRatio);
